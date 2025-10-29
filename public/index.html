@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundCam - Gesture Control Music Player</title>
+    <!-- Updated CSS path to reference style.css in same directory -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">SoundCam</h1>
+            <p class="subtitle">Control music with gestures</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Webcam and Canvas Container -->
+            <div class="video-container">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="canvas"></canvas>
+                
+                <!-- Interactive Zones Overlay -->
+                <div class="zones-overlay">
+                    <div class="zone zone-top-left" data-action="previous">
+                        <div class="zone-content">
+                            <svg class="zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                                <line x1="5" y1="19" x2="5" y2="5"></line>
+                            </svg>
+                            <span class="zone-label">Previous</span>
+                        </div>
+                    </div>
+                    
+                    <div class="zone zone-top-right" data-action="next">
+                        <div class="zone-content">
+                            <svg class="zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                                <line x1="19" y1="5" x2="19" y2="19"></line>
+                            </svg>
+                            <span class="zone-label">Next</span>
+                        </div>
+                    </div>
+                    
+                    <div class="zone zone-bottom-left" data-action="play">
+                        <div class="zone-content">
+                            <svg class="zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                            <span class="zone-label">Play</span>
+                        </div>
+                    </div>
+                    
+                    <div class="zone zone-bottom-right" data-action="pause">
+                        <div class="zone-content">
+                            <svg class="zone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                            <span class="zone-label">Pause</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Permission Request Overlay -->
+                <div id="permission-overlay" class="permission-overlay">
+                    <div class="permission-content">
+                        <svg class="camera-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                        <h2>Camera Access Required</h2>
+                        <p>SoundCam needs access to your webcam to detect gestures</p>
+                        <button id="enable-camera" class="enable-button">Enable Camera</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music Player Info -->
+            <div class="player-info">
+                <div class="album-art">
+                    <div class="album-placeholder"></div>
+                </div>
+                <div class="track-info">
+                    <h2 id="track-title" class="track-title">No Track Playing</h2>
+                    <p id="track-artist" class="track-artist">Select a song to begin</p>
+                </div>
+                <div class="playback-status">
+                    <span id="status-indicator" class="status-indicator">●</span>
+                    <span id="status-text" class="status-text">Stopped</span>
+                </div>
+            </div>
+
+            <!-- Detection Status -->
+            <div class="detection-status">
+                <h3>Detection Status</h3>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label">Top Left:</span>
+                        <span id="status-tl" class="status-value">Inactive</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Top Right:</span>
+                        <span id="status-tr" class="status-value">Inactive</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Bottom Left:</span>
+                        <span id="status-bl" class="status-value">Inactive</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Bottom Right:</span>
+                        <span id="status-br" class="status-value">Inactive</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <audio id="audio-player"></audio>
+    <!-- Updated script path to reference compiled JS from dist folder -->
+    <script type="module" src="../dist/App.js"></script>
+</body>
+</html>
