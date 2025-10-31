@@ -5,10 +5,11 @@
 
 export class CameraInput {
   private video: HTMLVideoElement
-  private stream: MediaStream | null = null
+  private stream: MediaStream | null
 
   constructor(videoElement: HTMLVideoElement) {
     this.video = videoElement
+    this.stream = null
   }
 
   /**
@@ -21,10 +22,16 @@ export class CameraInput {
         video: {
           width: { ideal: 1280 },
           height: { ideal: 720 },
+          facingMode: "user", // ✅ bevorzugt Frontkamera
         },
       })
 
       this.video.srcObject = this.stream
+
+      // ✅ Kamera horizontal spiegeln (wie Selfie)
+      this.video.style.transform = "scaleX(-1)"
+      this.video.style.transformOrigin = "center"
+      this.video.style.webkitTransform = "scaleX(-1)" // Safari-Fix
 
       // Wait for video metadata to load
       return new Promise((resolve) => {

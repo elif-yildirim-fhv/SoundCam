@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+ 
 :root {
   --color-bg: #0a0a0a;
   --color-surface: #1a1a1a;
@@ -15,7 +15,7 @@
   --color-zone-active: rgba(0, 255, 136, 0.3);
   --color-zone-hover: rgba(255, 255, 255, 0.1);
 }
-
+ 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--color-bg);
@@ -23,18 +23,18 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-
+ 
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
-
+ 
 .header {
   text-align: center;
   margin-bottom: 3rem;
 }
-
+ 
 .title {
   font-size: 3rem;
   font-weight: 700;
@@ -45,31 +45,32 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
+ 
 .subtitle {
   font-size: 1.125rem;
   color: var(--color-text-muted);
 }
-
+ 
 .main-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
   gap: 2rem;
+  align-items: start;
 }
-
+ 
 /* Video Container */
 .video-container {
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   aspect-ratio: 16 / 9;
   background-color: var(--color-surface);
   border-radius: 1rem;
   overflow: hidden;
   border: 2px solid var(--color-border);
 }
-
+ 
 #webcam {
   position: absolute;
   top: 0;
@@ -77,8 +78,9 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scaleX(-1) ;
 }
-
+ 
 #canvas {
   position: absolute;
   top: 0;
@@ -87,7 +89,7 @@ body {
   height: 100%;
   pointer-events: none;
 }
-
+ 
 /* Zones Overlay */
 .zones-overlay {
   position: absolute;
@@ -97,7 +99,7 @@ body {
   height: 100%;
   pointer-events: none;
 }
-
+ 
 .zone {
   position: absolute;
   width: 25%;
@@ -110,38 +112,38 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+ 
 .zone-top-left {
   top: 1rem;
   left: 1rem;
   border-radius: 0 0 1rem 0;
 }
-
+ 
 .zone-top-right {
   top: 1rem;
   right: 1rem;
   border-radius: 0 0 0 1rem;
 }
-
+ 
 .zone-bottom-left {
   bottom: 1rem;
   left: 1rem;
   border-radius: 0 1rem 0 0;
 }
-
+ 
 .zone-bottom-right {
   bottom: 1rem;
   right: 1rem;
   border-radius: 1rem 0 0 0;
 }
-
+ 
 .zone.active {
   background-color: var(--color-zone-active);
   border-color: var(--color-accent);
   transform: scale(1.05);
   box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
 }
-
+ 
 .zone-content {
   display: flex;
   flex-direction: column;
@@ -149,28 +151,28 @@ body {
   gap: 0.5rem;
   opacity: 0.8;
 }
-
+ 
 .zone.active .zone-content {
   opacity: 1;
 }
-
+ 
 .zone-icon {
   width: 3rem;
   height: 3rem;
   color: var(--color-text);
 }
-
+ 
 .zone.active .zone-icon {
   color: var(--color-accent);
 }
-
+ 
 .zone-label {
   font-size: 0.875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-
+ 
 /* Permission Overlay */
 .permission-overlay {
   position: absolute;
@@ -184,34 +186,34 @@ body {
   justify-content: center;
   z-index: 10;
 }
-
+ 
 .permission-overlay.hidden {
   display: none;
 }
-
+ 
 .permission-content {
   text-align: center;
   padding: 2rem;
   max-width: 400px;
 }
-
+ 
 .camera-icon {
   width: 4rem;
   height: 4rem;
   margin: 0 auto 1.5rem;
   color: var(--color-accent);
 }
-
+ 
 .permission-content h2 {
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
-
+ 
 .permission-content p {
   color: var(--color-text-muted);
   margin-bottom: 2rem;
 }
-
+ 
 .enable-button {
   background-color: var(--color-accent);
   color: var(--color-bg);
@@ -223,12 +225,12 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
+ 
 .enable-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
 }
-
+ 
 /* Player Info */
 .player-info {
   display: flex;
@@ -239,49 +241,49 @@ body {
   border-radius: 1rem;
   border: 1px solid var(--color-border);
 }
-
+ 
 .album-art {
   flex-shrink: 0;
 }
-
+ 
 .album-placeholder {
   width: 100px;
   height: 100px;
   background: linear-gradient(135deg, var(--color-border) 0%, var(--color-surface) 100%);
   border-radius: 0.5rem;
 }
-
+ 
 .track-info {
   flex: 1;
 }
-
+ 
 .track-title {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
-
+ 
 .track-artist {
   color: var(--color-text-muted);
   font-size: 1rem;
 }
-
+ 
 .playback-status {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-
+ 
 .status-indicator {
   font-size: 1.5rem;
   color: var(--color-text-muted);
 }
-
+ 
 .status-indicator.playing {
   color: var(--color-accent);
   animation: pulse 2s ease-in-out infinite;
 }
-
+ 
 @keyframes pulse {
   0%,
   100% {
@@ -291,7 +293,7 @@ body {
     opacity: 0.5;
   }
 }
-
+ 
 .status-text {
   font-size: 0.875rem;
   font-weight: 600;
@@ -299,26 +301,26 @@ body {
   letter-spacing: 0.05em;
   color: var(--color-text-muted);
 }
-
+ 
 /* Detection Status */
-.detection-status {
+.detection-status { display: none;
   padding: 2rem;
   background-color: var(--color-surface);
   border-radius: 1rem;
   border: 1px solid var(--color-border);
 }
-
+ 
 .detection-status h3 {
   font-size: 1.25rem;
   margin-bottom: 1.5rem;
 }
-
+ 
 .status-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
-
+ 
 .status-item {
   display: flex;
   justify-content: space-between;
@@ -328,46 +330,44 @@ body {
   border-radius: 0.5rem;
   border: 1px solid var(--color-border);
 }
-
+ 
 .status-label {
   font-weight: 600;
   color: var(--color-text-muted);
 }
-
+ 
 .status-value {
   font-weight: 600;
   color: var(--color-text-muted);
 }
-
+ 
 .status-value.active {
   color: var(--color-accent);
 }
-
+ 
 /* Responsive */
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
+@media (max-width: 900px) {
+  .main-content { grid-template-columns: 1fr; }
+ 
   .title {
     font-size: 2rem;
   }
-
+ 
   .player-info {
     flex-direction: column;
     text-align: center;
   }
-
+ 
   .zone {
     width: 30%;
     height: 30%;
   }
-
+ 
   .zone-icon {
     width: 2rem;
     height: 2rem;
   }
-
+ 
   .zone-label {
     font-size: 0.75rem;
   }

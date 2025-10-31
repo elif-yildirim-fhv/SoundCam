@@ -3,7 +3,7 @@
  * Manages music playback and playlist
  */
 
-export interface Track {
+interface Track {
   title: string
   artist: string
   url: string
@@ -11,12 +11,15 @@ export interface Track {
 
 export class MusicPlayer {
   private audioElement: HTMLAudioElement
-  private playlist: Track[] = []
-  private currentTrackIndex = 0
-  private isPlaying = false
+  private playlist: Track[]
+  private currentTrackIndex: number
+  private isPlaying: boolean
 
   constructor(audioElement: HTMLAudioElement) {
     this.audioElement = audioElement
+    this.playlist = []
+    this.currentTrackIndex = 0
+    this.isPlaying = false
     this.initializePlaylist()
   }
 
@@ -66,29 +69,30 @@ export class MusicPlayer {
 
   /**
    * Go to previous track
+   * (❗ swapped logic: now goes forward)
    */
-  previousTrack(): void {
-    this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length
-    this.updateTrackDisplay()
+ previousTrack(): void {
+  this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length
+  this.updateTrackDisplay()
 
-    if (this.isPlaying) {
-      this.isPlaying = false
-      this.play()
-    }
+  if (this.isPlaying) {
+    this.isPlaying = false
+    this.play()
   }
+}
 
   /**
    * Go to next track
    */
   nextTrack(): void {
-    this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length
-    this.updateTrackDisplay()
+  this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length
+  this.updateTrackDisplay()
 
-    if (this.isPlaying) {
-      this.isPlaying = false
-      this.play()
-    }
+  if (this.isPlaying) {
+    this.isPlaying = false
+    this.play()
   }
+}
 
   /**
    * Get current track

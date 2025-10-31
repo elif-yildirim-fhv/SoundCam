@@ -85,12 +85,13 @@ class App {
       case "pause":
         this.musicPlayer.pause()
         break
+         case "next":
+        this.musicPlayer.nextTrack()
+        break
       case "previous":
         this.musicPlayer.previousTrack()
         break
-      case "next":
-        this.musicPlayer.nextTrack()
-        break
+     
     }
   }
 }
@@ -99,3 +100,5 @@ class App {
 window.addEventListener("DOMContentLoaded", () => {
   new App()
 })
+
+export { App }
