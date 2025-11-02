@@ -1,8 +1,3 @@
-/**
- * ZoneDetector.ts
- * Detects motion and coverage in defined zones of the video feed
- */
-
 interface Zone {
   x: number
   y: number
@@ -67,23 +62,22 @@ export class ZoneDetector {
     const zoneHeight = canvasHeight * 0.35
     const margin = canvasWidth * 0.05
 
-    // ✅ Zonen gespiegelt anpassen (weil Video gespiegelt)
     this.zones.forEach((zone) => {
       switch (zone.action) {
         case "previous":
-          zone.x = margin // gespiegelt
+          zone.x = margin 
           zone.y = margin
           break
         case "next":
-          zone.x = canvasWidth - zoneWidth - margin // gespiegelt
+          zone.x = canvasWidth - zoneWidth - margin 
           zone.y = margin
           break
         case "play":
-          zone.x = canvasWidth - zoneWidth - margin // gespiegelt
+          zone.x = canvasWidth - zoneWidth - margin 
           zone.y = canvasHeight - zoneHeight - margin
           break
         case "pause":
-          zone.x = margin // gespiegelt
+          zone.x = margin 
           zone.y = canvasHeight - zoneHeight - margin
           break
       }
@@ -109,7 +103,6 @@ export class ZoneDetector {
     if (!this.isRunning) return
 
     if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
-      // ✅ Kamera gespiegelt ins Canvas zeichnen
       this.ctx.save()
       this.ctx.scale(-1, 1)
       this.ctx.drawImage(this.video, -this.canvas.width, 0, this.canvas.width, this.canvas.height)

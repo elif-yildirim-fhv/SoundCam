@@ -4,23 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoundCam - Gesture Control Music Player</title>
-    <!-- Updated CSS path to reference style.css in same directory -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
             <h1 class="title">SoundCam</h1>
-            <p class="subtitle">Control music with gestures</p>
+            <p class="subtitle">Control music with your camera!</p>
         </header>
 
         <main class="main-content">
-            <!-- Webcam and Canvas Container -->
             <div class="video-container">
                 <video id="webcam" autoplay playsinline></video>
                 <canvas id="canvas"></canvas>
                 
-                <!-- Interactive Zones Overlay -->
                 <div class="zones-overlay">
                     <div class="zone zone-top-left"  data-action="previous">
                         <div class="zone-content">
@@ -63,7 +60,6 @@
                     </div>
                 </div>
 
-                <!-- Permission Request Overlay -->
                 <div id="permission-overlay" class="permission-overlay">
                     <div class="permission-content">
                         <svg class="camera-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -77,7 +73,6 @@
                 </div>
             </div>
 
-            <!-- Music Player Info -->
             <div class="player-info">
                 <div class="album-art">
                     <div class="album-placeholder"></div>
@@ -92,33 +87,7 @@
                 </div>
             </div>
 
-            <!-- Detection Status -->
-            <div class="detection-status">
-                <h3>Detection Status</h3>
-                <div class="status-grid">
-                    <div class="status-item">
-                        <span class="status-label">Top Left:</span>
-                        <span id="status-tl" class="status-value">Inactive</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Top Right:</span>
-                        <span id="status-tr" class="status-value">Inactive</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Bottom Left:</span>
-                        <span id="status-bl" class="status-value">Inactive</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Bottom Right:</span>
-                        <span id="status-br" class="status-value">Inactive</span>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
     <audio id="audio-player"></audio>
-    <!-- Updated script path to reference compiled JS from dist folder -->
     <script type="module" src="../dist/App.js"></script>
 </body>
 </html>

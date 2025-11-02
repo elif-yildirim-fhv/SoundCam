@@ -1,8 +1,3 @@
-/**
- * MusicPlayer.ts
- * Manages music playback and playlist
- */
-
 interface Track {
   title: string
   artist: string
@@ -23,26 +18,28 @@ export class MusicPlayer {
     this.initializePlaylist()
   }
 
-  /**
-   * Initialize the playlist with sample tracks
-   */
   private initializePlaylist(): void {
     this.playlist = [
-      { title: "Electronic Dreams", artist: "Synthwave Artist", url: "song1.mp3" },
-      { title: "Digital Horizon", artist: "Cyber Sound", url: "song2.mp3" },
-      { title: "Neon Nights", artist: "Future Beats", url: "song3.mp3" },
+      
+      {title: "Neon", artist: "artist 1", url: "1_Neon.mp3"}, 
+      {title: "Born this way", artist: "artist 2", url: "2_BornThisWay.mp3"}, 
+      {title: "Mirror", artist: "artist 3", url: "3_Mirror.mp3"}, 
+      {title: "I miss the sun", artist: "artist 4 ", url: "4_IMissTheSun.mp3"}, 
+      {title: "Silver Moon", artist: "artist 5", url: "5_SilverMoon.mp3"}, 
+      {title: "Explode", artist: "artist 6", url: "6_Explode.mp3"}, 
+      {title: "That ticking", artist: "artist 7", url: "7_ThatTicking.mp3"}, 
+      {title: "Minimal dance", artist: "artist 8", url: "8_MinimalDance.mp3"}, 
+      {title: "Goodbye love", artist: "artist 9", url: "9_GoodByeLove.mp3"}, 
+      {title: "The stroller", artist: "artist 10", url: "10_TheStroller.mp3"}, 
+
     ]
   }
 
-  /**
-   * Play the current track
-   */
   play(): void {
     if (!this.isPlaying) {
       this.isPlaying = true
       const track = this.playlist[this.currentTrackIndex]
 
-      // Set audio source if not already set
       if (this.audioElement.src !== track.url) {
         this.audioElement.src = track.url
       }
@@ -56,9 +53,6 @@ export class MusicPlayer {
     }
   }
 
-  /**
-   * Pause the current track
-   */
   pause(): void {
     if (this.isPlaying) {
       this.isPlaying = false
@@ -67,10 +61,6 @@ export class MusicPlayer {
     }
   }
 
-  /**
-   * Go to previous track
-   * (❗ swapped logic: now goes forward)
-   */
  previousTrack(): void {
   this.currentTrackIndex = (this.currentTrackIndex - 1 + this.playlist.length) % this.playlist.length
   this.updateTrackDisplay()
@@ -81,9 +71,6 @@ export class MusicPlayer {
   }
 }
 
-  /**
-   * Go to next track
-   */
   nextTrack(): void {
   this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length
   this.updateTrackDisplay()
@@ -94,23 +81,14 @@ export class MusicPlayer {
   }
 }
 
-  /**
-   * Get current track
-   */
   getCurrentTrack(): Track {
     return this.playlist[this.currentTrackIndex]
   }
 
-  /**
-   * Check if music is playing
-   */
   getIsPlaying(): boolean {
     return this.isPlaying
   }
 
-  /**
-   * Update track display in UI
-   */
   private updateTrackDisplay(): void {
     const track = this.playlist[this.currentTrackIndex]
     const titleElement = document.getElementById("track-title")
@@ -120,9 +98,6 @@ export class MusicPlayer {
     if (artistElement) artistElement.textContent = track.artist
   }
 
-  /**
-   * Update playback status in UI
-   */
   private updatePlaybackStatus(status: string): void {
     const statusText = document.getElementById("status-text")
     const statusIndicator = document.getElementById("status-indicator")

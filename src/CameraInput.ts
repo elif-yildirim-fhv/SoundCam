@@ -1,8 +1,3 @@
-/**
- * CameraInput.ts
- * Handles webcam access and video stream management
- */
-
 export class CameraInput {
   private video: HTMLVideoElement
   private stream: MediaStream | null
@@ -12,28 +7,22 @@ export class CameraInput {
     this.stream = null
   }
 
-  /**
-   * Request camera access from the user
-   * @returns Promise that resolves when camera is ready
-   */
   async requestAccess(): Promise<void> {
     try {
       this.stream = await navigator.mediaDevices.getUserMedia({
         video: {
           width: { ideal: 1280 },
           height: { ideal: 720 },
-          facingMode: "user", // ✅ bevorzugt Frontkamera
+          facingMode: "user", 
         },
       })
 
       this.video.srcObject = this.stream
 
-      // ✅ Kamera horizontal spiegeln (wie Selfie)
       this.video.style.transform = "scaleX(-1)"
       this.video.style.transformOrigin = "center"
-      this.video.style.webkitTransform = "scaleX(-1)" // Safari-Fix
+      this.video.style.webkitTransform = "scaleX(-1)" 
 
-      // Wait for video metadata to load
       return new Promise((resolve) => {
         this.video.addEventListener("loadedmetadata", () => {
           resolve()
@@ -45,16 +34,10 @@ export class CameraInput {
     }
   }
 
-  /**
-   * Get the video element
-   */
   getVideoElement(): HTMLVideoElement {
     return this.video
   }
 
-  /**
-   * Get video dimensions
-   */
   getDimensions(): { width: number; height: number } {
     return {
       width: this.video.videoWidth,
@@ -62,9 +45,6 @@ export class CameraInput {
     }
   }
 
-  /**
-   * Stop the camera stream
-   */
   stop(): void {
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop())
