@@ -111,7 +111,6 @@ body {
   border-radius: 1rem;
 }
 
-/* Added progress bar styles */
 .progress-container {
   display: flex;
   flex-direction: column;

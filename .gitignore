@@ -1,31 +1,24 @@
-# Node / dependencies
 node_modules/
 
-# Build / output
 dist/
 build/
 out/
 lib/
 types/
 
-# TypeScript incremental cache
 tsconfig.tsbuildinfo
 
-# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment files 
 .env
 .env.local
 .env.*.local
 
-# Coverage / test output
 coverage/
 .nyc_output/
 
-# Caches / bundlers
 .cache/
 .parcel-cache/
 .turbo/
@@ -35,15 +28,12 @@ coverage/
 .sass-cache/
 .turbo/
 
-# Linter / tooling caches
 .eslintcache
 
-# Editor / OS
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 
-# Optional: lockfiles and package manager folders sometimes ignored in monorepos
 pnpm-lock.yaml
 /.pnp
