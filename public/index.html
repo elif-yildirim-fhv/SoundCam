@@ -74,8 +74,15 @@
             </div>
 
             <div class="player-info">
-                <div class="album-art">
-                    <div class="album-placeholder"></div>
+                <!-- Removed album art, added progress bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="current-time">0:00</span>
+                        <span id="total-time">0:00</span>
+                    </div>
                 </div>
                 <div class="track-info">
                     <h2 id="track-title" class="track-title">No Track Playing</h2>
